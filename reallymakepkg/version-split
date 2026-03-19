@@ -60,16 +60,16 @@ _version_split() {
     _separators=()
   _return=""
   _separators=(
-    "<"
-    ">"
     "<="
     ">="
+    "<"
+    ">"
     "="
   )
   for _sep in "${_separators[@]}"; do
     if [[ "${_string}" == *"${_sep}"* ]]; then
       _name="${_string%${_sep}*}"
-      _pkgver="${_string#${_name}}"
+      _pkgver="${_string#${_name}${_sep}}"
       _resolve_flag="true"
       if [[ "${_variable}" == "name" ]]; then
         _return="${_name}"
@@ -126,7 +126,7 @@ _usage() {
       usage_text << \
         ENDUSAGETEXT || true
 
-Split extract package name or version from a depend string.
+Extract package name or version from a depend string.
 
 usage:
 
@@ -166,7 +166,7 @@ _display_flags() {
 _show_config() {
   _msg_info "${app_name} configuration settings"
   _msg_info "                 Get date:   ${get_date}"
-  _msg_info "                  Package:   ${target_package}"
+  _msg_info "                   String:   ${target_string}"
   _msg_info "                 Variable:   ${target_variable}"
 }
 
@@ -197,22 +197,22 @@ shift \
   $(( \
     OPTIND - 1 \
   ))
-if (( "$#" < 1 )); then
+if (( "${#}" < 1 )); then
   _set_overrides
   _usage \
     1
 fi
-target_recipe="${1}"
-if (( "$#" < 2 )); then
+target_string="${1}"
+if (( "${#}" < 2 )); then
   target_variable="name"
 fi
-if (( 1 < "$#" )); then
+if (( 1 < "${#}" )); then
   target_variable="${2}"
 fi
 _set_overrides
 _show_config
 app_opts=(
-  "${target_recipe}"
+  "${target_string}"
   "${target_variable}"
   "${cache_dir}"
 )

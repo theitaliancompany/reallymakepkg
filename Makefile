@@ -133,6 +133,9 @@ install-man:
 	rst2man \
 	  "man/termux-install-shared.1.rst" \
 	  "$(MAN_DIR)/man1/termux-install-shared.1"
+	rst2man \
+	  "man/version-split.1.rst" \
+	  "$(MAN_DIR)/man1/version-split.1"
 
 uninstall:
 
