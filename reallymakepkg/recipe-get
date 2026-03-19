@@ -71,9 +71,6 @@ _recipe_get() {
   if (( 3 < "${#}" )); then
     _delim="${4}"
   fi
-  if [[ "${_delim}" == '\0' ]]; then
-    echo "hurr"
-  fi
   _ref="${_obj}[@]"
   if [[ "${quiet}" == "y" ]]; then
     _value="$(
