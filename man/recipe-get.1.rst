@@ -46,6 +46,16 @@ Reads a variable from a PKGBUILD.
 Options
 ========
 
+-o output-type     Output type.
+                   Can be 'string' or 'array'.
+                   Setting the first sets
+                   delimiter to \n,
+                   the second to \0.
+                   Default: string
+-d array-delimiter Sets a specific delimiter
+                   when printing array values.
+                   Default: \n.
+
 -h                 Display help.
 -c                 Enable color output
 -v                 Enable verbose output
